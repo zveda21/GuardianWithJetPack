@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/sectionFragment">
+    <fragment
+        android:id="@+id/sectionFragment"
+        android:name="com.example.guardianchangeapp.nestedfragments.firstTab.SectionFragment"
+        android:label="Section"
+        tools:layout="@layout/fragment_section">
+        <action
+            android:id="@+id/action_sectionFragment_to_contentFragment"
+            app:destination="@id/contentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.guardianchangeapp.nestedfragments.news.NewsFragment"
+        android:label="News"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.guardianchangeapp.nestedfragments.favorites.FavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/contentFragment"
+        android:name="com.example.guardianchangeapp.nestedfragments.firstTab.ContentFragment"
+        android:label="Content"
+        tools:layout="@layout/fragment_content">
+        <action
+            android:id="@+id/action_contentFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.example.guardianchangeapp.nestedfragments.firstTab.DescriptionFragment"
+        android:label="fragment_description"
+        tools:layout="@layout/fragment_description" />
+</navigation>
