@@ -10,14 +10,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.common.ApiClient
 import com.example.common.BaseCommonViewModel
-import com.example.common.CommonRepositoryImpl
 import com.example.guardianchangeapp.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding: ActivityMainBinding
     lateinit var controller: NavController
-    private var commonRepositoryImpl = CommonRepositoryImpl(ApiClient.instance)
+    private var commonRepositoryImpl = MainRepositoryImpl(ApiClient.instance)
     private val commonViewModel by viewModels<BaseCommonViewModel> {
         MainFactory(commonRepositoryImpl)
     }
@@ -43,4 +42,6 @@ class MainActivity : AppCompatActivity() {
             Log.e("Data", it.toString())
         })
     }
+
+
 }

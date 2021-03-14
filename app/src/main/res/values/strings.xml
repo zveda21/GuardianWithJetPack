@@ -6,4 +6,8 @@
     <string name="content">Content</string>
     <string name="favorite">Favorite</string>
     <string name="news">News</string>
+    <string name="logIn">Sign in</string>
+    <string name="logout">Sign out</string>
+    <string name="enterAsGuest">Enter as Guest</string>
+    <string name="username">Username</string>
 </resources>
