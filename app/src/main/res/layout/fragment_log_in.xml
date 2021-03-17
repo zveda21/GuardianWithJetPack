@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_blue"
-    tools:context=".welcome.login.LogInFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_blue"
+        tools:context=".welcome.login.LogInFragment">
 
 
-    <EditText
-        android:id="@+id/userName"
-        style="@style/LoginRegEditTextStyle"
-        android:hint="@string/username"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/userName"
+            style="@style/LoginRegEditTextStyle"
+            android:hint="@string/username"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/LoginRegEditTextStyle"
+            android:hint="@string/password"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userName" />
+
+        <Button
+            android:id="@+id/logIn"
+            style="@style/WelcomeButtonStyle"
+            android:layout_marginTop="@dimen/_10dp"
+            android:text="@string/logIn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
