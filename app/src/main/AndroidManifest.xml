@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GuardianChangeApp">
-        <activity android:name=".welcome.WelcomeActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".SplashActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

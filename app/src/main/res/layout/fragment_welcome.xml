@@ -22,16 +22,16 @@
         style="@style/WelcomeButtonStyle"
         android:layout_marginTop="@dimen/_30dp"
         android:text="@string/logIn"
-        app:layout_constraintBottom_toTopOf="@id/signOutBtn"
+        app:layout_constraintBottom_toTopOf="@id/registerBt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iconImage"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
-        android:id="@+id/signOutBtn"
+        android:id="@+id/registerBt"
         style="@style/WelcomeButtonStyle"
         android:layout_marginTop="@dimen/_10dp"
-        android:text="@string/logout"
+        android:text="@string/register"
         app:layout_constraintBottom_toTopOf="@id/line"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signInBtn" />
@@ -44,7 +44,7 @@
         android:layout_marginTop="@dimen/_10dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@id/enterAsGuest"
-        app:layout_constraintTop_toBottomOf="@id/signOutBtn" />
+        app:layout_constraintTop_toBottomOf="@id/registerBt" />
 
     <TextView
         android:id="@+id/enterAsGuest"

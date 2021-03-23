@@ -2,66 +2,59 @@ package com.example.guardianchangeapp.welcome.login
 
 import android.app.Application
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class AuthAppRepository(private val application: Application) {
-    private lateinit var firebaseAuth: FirebaseAuth
-    val userLiveData: MutableLiveData<FirebaseUser>
-    val loggedOutLiveData: MutableLiveData<Boolean>
+interface AuthAppRepository {
+    fun login(email: String, password: String)
+    fun register(email: String, password: String)
 
-    fun login(email: String?, password: String?) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(application.mainExecutor, { task ->
-                if (task.isSuccessful) {
-                    userLiveData.postValue(firebaseAuth.currentUser)
-                } else {
-                    Toast.makeText(application.applicationContext, "Login Failure: " + task.exception!!.message, Toast.LENGTH_SHORT).show()
-                }
-            })
+}
+
+class AuthAppRepoImpl(private val application: Application) : AuthAppRepository {
+    private var firebaseAuth = FirebaseAuth.getInstance()
+    private var _userLiveData: MutableLiveData<FirebaseUser> = MutableLiveData()
+    val userLiveData: LiveData<FirebaseUser> = _userLiveData
+    private var _loggedOutLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    val loggedOutLiveData: LiveData<Boolean> = _loggedOutLiveData
+
+    override fun login(email: String, password: String) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(application.mainExecutor, { task ->
+                    if (task.isSuccessful) {
+                        _userLiveData.postValue(firebaseAuth.currentUser)
+                    } else {
+                        Toast.makeText(application.applicationContext, "Login Failure: " + task.exception!!.message, Toast.LENGTH_SHORT).show()
+                    }
+                })
+        }
     }
 
-    fun register(email: String?, password: String?) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(application.mainExecutor, { task ->
-                if (task.isSuccessful) {
-                    userLiveData.postValue(firebaseAuth.currentUser)
-                } else {
-                    Toast.makeText(application.applicationContext, "Registration Failure: " + task.exception!!.message, Toast.LENGTH_SHORT).show()
-                }
-            })
+    override fun register(email: String, password: String) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(application.mainExecutor, { task ->
+                    if (task.isSuccessful) {
+                        _userLiveData.postValue(firebaseAuth.currentUser)
+                    } else {
+                        Toast.makeText(application.applicationContext, "Registration Failure: " + task.exception!!.message, Toast.LENGTH_SHORT).show()
+                    }
+                })
+        }
     }
 
     fun logOut() {
         firebaseAuth.signOut()
-        loggedOutLiveData.postValue(true)
+        _loggedOutLiveData.postValue(true)
     }
 
     init {
-        firebaseAuth = FirebaseAuth.getInstance()
-        userLiveData = MutableLiveData()
-        loggedOutLiveData = MutableLiveData()
         if (firebaseAuth.currentUser != null) {
-            userLiveData.postValue(firebaseAuth.currentUser)
-            loggedOutLiveData.postValue(false)
+            _userLiveData.postValue(firebaseAuth.currentUser)
+            _loggedOutLiveData.postValue(false)
         }
     }
 }
-//class LoginRegisterViewModel(application: Application) : AndroidViewModel(application) {
-//    private val authAppRepository: AuthAppRepository
-//    val userLiveData: MutableLiveData<FirebaseUser>
-//
-//    fun login(email: String?, password: String?) {
-//        authAppRepository.login(email, password)
-//    }
-//
-//    fun register(email: String?, password: String?) {
-//        authAppRepository.register(email, password)
-//    }
-//
-//    init {
-//        authAppRepository = AuthAppRepository(application)
-//        userLiveData = authAppRepository.getUserLiveData()
-//    }
-//}
