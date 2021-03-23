@@ -35,33 +35,34 @@ class RegisterFragment : BaseLoginRegFragment() {
 
     private fun onclickRegBtn() {
         registerBinding.registerBtn.setOnClickListener {
-            if (registerBinding.regEmailEt.text.toString().isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(registerBinding.regEmailEt.text.toString())
+            if (registerBinding.regEmailEt.text.toString().isNotEmpty() &&
+                Patterns.EMAIL_ADDRESS.matcher(registerBinding.regEmailEt.text.toString())
                     .matches() && registerBinding.regPassEt.text.toString().isNotEmpty()
             ) {
                 loginRegisterViewModel.register(registerBinding.regEmailEt.text.toString(), registerBinding.regPassEt.text.toString())
                 val activity = requireActivity() as WelcomeActivity
                 activity.startMainActivity(MainActivity())
+            } else if (registerBinding.regEmailEt.text.toString().isEmpty() || registerBinding.regPassEt.text.toString().isEmpty()) {
+                registerBinding.regEmailLayout.error = "Please write  email"
+                registerBinding.regPassLayout.error = "Please write  password"
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(registerBinding.regEmailEt.text.toString()).matches()) {
+                registerBinding.regEmailLayout.error = "Please write correct email"
             } else {
-                if (registerBinding.regEmailEt.text.toString().isEmpty() || registerBinding.regPassEt.text.toString().isEmpty()) {
-                    registerBinding.regEmailLayout.error = "Please write  email"
-                    registerBinding.regPassLayout.error = "Please write  password"
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(registerBinding.regEmailEt.text.toString()).matches())
-                    registerBinding.regEmailLayout.error = "Please write correct email"
-                else {
-                    Toast.makeText(requireContext(), "Reg failure", Toast.LENGTH_SHORT).show()
-                }
-                registerBinding.regEmailEt.text?.clear()
-                registerBinding.regPassEt.text?.clear()
+                Toast.makeText(requireContext(), "Reg failure", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
-    private fun changeFocus(){
+
+    private fun changeFocus() {
         registerBinding.regEmailEt.setOnFocusChangeListener { view, isFocus ->
-            if (!isFocus){
-                registerBinding.regPassLayout.error = "Please write  password"
-            }
+            if (isFocus)
+            registerBinding.regEmailLayout.isErrorEnabled = false
+
+        }
+        registerBinding.regPassEt.setOnFocusChangeListener { view, isFocus ->
+            if (isFocus)
             registerBinding.regPassLayout.isErrorEnabled = false
+
         }
     }
 

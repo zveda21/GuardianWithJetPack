@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signInBtn"
         style="@style/WelcomeButtonStyle"
         android:layout_marginTop="@dimen/_30dp"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@id/iconImage"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/registerBt"
         style="@style/WelcomeButtonStyle"
         android:layout_marginTop="@dimen/_10dp"

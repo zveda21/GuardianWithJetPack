@@ -17,7 +17,6 @@
     <style name="WelcomeButtonStyle">
         <item name="android:background">@drawable/round_shape</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textSize">14sp</item>
         <item name="android:layout_marginTop">@dimen/_10dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginHorizontal">@dimen/_10dp</item>

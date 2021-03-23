@@ -1,41 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_blue"
+    tools:context=".welcome.login.LogInFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginEmailLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_blue"
-        tools:context=".welcome.login.LogInFragment">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:theme="@style/EditTextThemeOverlay"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginEmailEt"
+            style="@style/RegisterEditTextStyle"
+            android:background="@android:color/transparent"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/userName"
-            style="@style/LoginRegEditTextStyle"
-            android:hint="@string/username"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginPassLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:theme="@style/EditTextThemeOverlay"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailLayout">
 
-        <EditText
-            android:id="@+id/password"
-            style="@style/LoginRegEditTextStyle"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPassEt"
+            style="@style/RegisterEditTextStyle"
+            android:background="@android:color/transparent"
             android:hint="@string/password"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/userName" />
-
-        <Button
-            android:id="@+id/logIn"
-            style="@style/WelcomeButtonStyle"
-            android:layout_marginTop="@dimen/_10dp"
-            android:text="@string/logIn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password" />
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logIn"
+        style="@style/WelcomeButtonStyle"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/logIn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginPassLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
